@@ -13,10 +13,12 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
 
 player = Player(5000, 5000)
-enemy = Enemy(5300, 5200)
 camera = Camera()
 
 render = Render(TILE, screen)
+
+spawn_timer = 0
+spawn_delay = 2
 
 running = True
 while running:
@@ -29,12 +31,27 @@ while running:
     keys = pygame.key.get_pressed()
 
     player.movement(keys, dt)
-    enemy.movе(player.pos, dt)
     camera.get_cam(player.pos, screen)
+    Enemy.update(player.pos, dt)
+
+    spawn_timer += dt
+    if spawn_timer >= spawn_delay:
+
+        Enemy.spawn(
+            camera,
+            WIDTH,
+            HEIGHT
+        )
+
+        spawn_timer = 0
 
     render.draw_bg(camera)
     render.draw_player(player, camera)
-    render.draw_enemy(enemy, camera)
+
+    render.draw_all_enemies(
+        Enemy.enemies,
+        camera
+    )
 
     pygame.display.flip()
     

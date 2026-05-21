@@ -48,3 +48,11 @@ class Render:
             enemy.pos - camera.pos,
             enemy.radius
         )
+    
+    def draw_all_enemies(
+        self,
+        enemies,
+        camera
+    ):
+        for enemy in enemies:
+            self.draw_enemy(enemy, camera)
