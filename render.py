@@ -49,10 +49,21 @@ class Render:
             enemy.radius
         )
     
-    def draw_all_enemies(
-        self,
-        enemies,
-        camera
-    ):
+    def draw_all_enemies(self, enemies, camera):
         for enemy in enemies:
             self.draw_enemy(enemy, camera)
+    
+    def draw_bullet(self, bullet, camera):
+        pygame.draw.circle(
+        self.screen,
+        bullet.color,
+        bullet.pos - camera.pos,
+        bullet.radius
+    )
+    
+    def draw_all_bullets(self, bullets, camera):
+        for bullet in bullets:
+            self.draw_bullet(
+                bullet,
+                camera
+            )

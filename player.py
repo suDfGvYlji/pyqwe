@@ -10,7 +10,7 @@ class Player:
     def movement(self, keys, dt):
         dir = pygame.Vector2(0, 0)
 
-        if keys[pygame.K_w] or keys[pygame.K_SPACE]:
+        if keys[pygame.K_w]:
             dir.y -= 1
         if keys[pygame.K_s]:
             dir.y += 1
